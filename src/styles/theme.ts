@@ -70,20 +70,18 @@ const space = [
   "9.6rem",
 ];
 
-interface StyleClosetTheme {
+export type StyleClosetTheme = {
   breakpoints: string[];
   fontSizes: string[];
   space: string[];
   colors: { [key in keyof typeof colors]: string };
   secondaryColors: { [key in keyof typeof secondaryColors]: string };
-}
+};
 
-const theme: StyleClosetTheme = {
+export const theme: StyleClosetTheme = {
   breakpoints,
   fontSizes,
   space,
   colors,
   secondaryColors,
 };
-
-export { theme, StyleClosetTheme };

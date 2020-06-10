@@ -1,10 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import styled from "./styles";
 
-function App() {
+const Wrapper = styled.div`
+  text-align: center;
+`;
+
+function App(): JSX.Element {
   return (
-    <div className="App">
+    <Wrapper className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +24,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </Wrapper>
   );
 }
 
