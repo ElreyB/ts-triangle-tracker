@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { ThemeProvider } from "./styles";
-import { theme } from "./styles";
+import { ThemeProvider, theme, GlobalStyles } from "./styles";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <App />
     </ThemeProvider>
   </React.StrictMode>,

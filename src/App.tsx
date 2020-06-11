@@ -5,6 +5,8 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
+const Form = styled.form``;
+
 type State = {
   side1: string;
   side2: string;
@@ -21,10 +23,14 @@ const defaultState = {
 
 function triangleType(side1: number, side2: number, side3: number): string {
   let type = "";
-  if (side1 + side2 > side3 || side1 + side3 > side2 || side2 + side3 > side1) {
-    type = "Not a Triangle";
-  } else if (side1 === side2 && side2 === side3) {
+  if (side1 === side2 && side2 === side3) {
     type = "equilateral";
+  } else if (
+    side1 + side2 <= side3 ||
+    side1 + side3 <= side2 ||
+    side2 + side3 <= side1
+  ) {
+    type = "Not a Triangle";
   } else if (side1 === side2 || side1 === side3 || side2 === side3) {
     type = "sosceles";
   } else if (side1 !== side2 && side1 !== side3 && side2 !== side3) {
@@ -42,44 +48,47 @@ function App(): JSX.Element {
     setState({ ...state, [name]: value });
   };
 
-  const handleCheck = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCheck = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { side1, side2, side3 } = state;
+    const type = triangleType(+side1, +side2, +side3);
     setState({
       ...state,
       ...defaultState,
-      type: triangleType(+side1, +side2, +side3),
+      type,
     });
   };
 
   console.log(state);
   return (
     <Wrapper>
-      <label htmlFor="side1">Side 1:</label>
-      <input
-        type="number"
-        name="side1"
-        id="side1"
-        value={side1}
-        onChange={handleOnchange}
-      />
-      <label htmlFor="side2">Side 2:</label>
-      <input
-        type="number"
-        name="side2"
-        id="side2"
-        value={side2}
-        onChange={handleOnchange}
-      />
-      <label htmlFor="side3">Side 3:</label>
-      <input
-        type="number"
-        name="side3"
-        id="side3"
-        value={side3}
-        onChange={handleOnchange}
-      />
-      <button onClick={handleCheck}>Check</button>
+      <Form onSubmit={handleCheck}>
+        <label htmlFor="side1">Side 1:</label>
+        <input
+          type="number"
+          name="side1"
+          id="side1"
+          value={side1}
+          onChange={handleOnchange}
+        />
+        <label htmlFor="side2">Side 2:</label>
+        <input
+          type="number"
+          name="side2"
+          id="side2"
+          value={side2}
+          onChange={handleOnchange}
+        />
+        <label htmlFor="side3">Side 3:</label>
+        <input
+          type="number"
+          name="side3"
+          id="side3"
+          value={side3}
+          onChange={handleOnchange}
+        />
+        <button type="submit">Check</button>
+      </Form>
       <button>Rest</button>
     </Wrapper>
   );
