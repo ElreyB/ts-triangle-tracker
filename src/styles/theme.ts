@@ -1,5 +1,5 @@
 // JS reimplementation of Style Closet scales for use in styled-components
-const colors = {
+export const colors = {
   blue: "#2179ee",
   green: "#00cc9a",
   coral: "#ff6759",
@@ -16,7 +16,7 @@ const colors = {
   grey60: "#30363d",
 };
 
-const secondaryColors = {
+export const secondaryColors = {
   blue10: "#ade7ff",
   blue20: "#61bcff",
   blue30: "#2179ee",

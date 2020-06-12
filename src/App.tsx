@@ -1,59 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
+import Form from "./components/Form";
+import { State } from "./types";
+import { triangleType } from "./utils";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
 `;
 
-const Form = styled.form`
-  border: 1px solid black;
-  min-height: 200px;
-  min-width: 300px;
+const Header = styled.h1`
   background-color: white;
-  padding: 10px;
+  min-width: 25%;
+  text-align: center;
+  padding: 10px 0;
 `;
-
-const FormField = styled.div`
-  margin-bottom: 10px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid black;
-`;
-
-const Label = styled.label`
-  display: block;
-  width: 100%;
-`;
-
-const Button = styled.button<{ width: number }>`
-  width: ${({ width }) => `${width}%`};
-  padding: 5px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: 1px solid black;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-type State = {
-  side1: string;
-  side2: string;
-  side3: string;
-  type: string;
-};
 
 const defaultState = {
   side1: "",
@@ -62,25 +26,7 @@ const defaultState = {
   type: "",
 };
 
-function triangleType(side1: number, side2: number, side3: number): string {
-  let type = "";
-  if (side1 === side2 && side2 === side3) {
-    type = "equilateral";
-  } else if (
-    side1 + side2 <= side3 ||
-    side1 + side3 <= side2 ||
-    side2 + side3 <= side1
-  ) {
-    type = "Not a Triangle";
-  } else if (side1 === side2 || side1 === side3 || side2 === side3) {
-    type = "sosceles";
-  } else if (side1 !== side2 && side1 !== side3 && side2 !== side3) {
-    type = "scalene";
-  }
-  return type;
-}
-
-function App({ width = 25 }: { width?: number }): JSX.Element {
+function App(): JSX.Element {
   const [state, setState] = useState<State>(defaultState);
   const { side1, side2, side3 } = state;
 
@@ -102,7 +48,16 @@ function App({ width = 25 }: { width?: number }): JSX.Element {
 
   return (
     <Wrapper>
-      <Form onSubmit={handleCheck}>
+      <Header>Triangle Tracker</Header>
+      <Form
+        handleCheck={handleCheck}
+        handleOnchange={handleOnchange}
+        side1={side1}
+        side2={side2}
+        side3={side3}
+        setState={() => setState(defaultState)}
+      />
+      {/* <Form onSubmit={handleCheck}>
         <FormField>
           <Label htmlFor="side1">Side 1:</Label>
           <Input
@@ -145,7 +100,7 @@ function App({ width = 25 }: { width?: number }): JSX.Element {
             Rest
           </Button>
         </ButtonGroup>
-      </Form>
+      </Form> */}
     </Wrapper>
   );
 }
