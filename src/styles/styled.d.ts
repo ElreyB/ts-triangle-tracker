@@ -1,16 +1,35 @@
-import * as React from "react";
-import { ThemedStyledComponentsModule } from "styled-components";
+// import * as React from "react";
+// import { ThemedStyledComponentsModule } from "styled-components";
 
-declare module "styled-components" {
-  export interface ThemedStyledComponentsModule<T> {
-    createGlobalStyle(
-      strings: TemplateStringsArray,
-      ...interpolations: SimpleInterpolation[]
-    ): React.ComponentClass;
-  }
+// declare module "styled-components/macro" {
+//   export interface ThemedStyledComponentsModule<T> {
+//     createGlobalStyle(
+//       strings: TemplateStringsArray,
+//       ...interpolations: SimpleInterpolation[]
+//     ): React.ComponentClass;
+//   }
 
-  export function createGlobalStyle(
-    strings: TemplateStringsArray,
-    ...interpolations: SimpleInterpolation[]
-  ): React.ComponentClass;
+//   export function createGlobalStyle(
+//     strings: TemplateStringsArray,
+//     ...interpolations: SimpleInterpolation[]
+//   ): React.ComponentClass;
+// }
+
+declare module "styled-components/macro" {
+  import { ThemedStyledComponentsModule } from "styled-components";
+  import { StyleClosetTheme } from "./theme";
+
+  const ModuleInterface: ThemedStyledComponentsModule<StyleClosetTheme>;
+
+  export const createGlobalStyle: typeof ModuleInterface.createGlobalStyle;
+  export const css: typeof ModuleInterface.css;
+  export const keyframes: typeof ModuleInterface.keyframes;
+  export const isStyledComponent: typeof ModuleInterface.isStyledComponent;
+  export const ServerStyleSheet: typeof ModuleInterface.ServerStyleSheet;
+  export const StyleSheetManager: typeof ModuleInterface.StyleSheetManager;
+  export const ThemeConsumer: typeof ModuleInterface.ThemeConsumer;
+  export const ThemeContext: typeof ModuleInterface.ThemeContext;
+  export const ThemeProvider: typeof ModuleInterface.ThemeProvider;
+  export const withTheme: typeof ModuleInterface.withTheme;
+  export default ModuleInterface.default;
 }
