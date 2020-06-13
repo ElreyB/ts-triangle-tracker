@@ -37,7 +37,6 @@ function App(): JSX.Element {
 
   const handleCheck = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { side1, side2, side3 } = state;
     const type = triangleType(+side1, +side2, +side3);
     setState({
       ...state,
