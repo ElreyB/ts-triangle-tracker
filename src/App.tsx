@@ -3,6 +3,8 @@ import styled from "styled-components/macro";
 import Form from "./components/Form";
 import { State } from "./types";
 import { triangleType } from "./utils";
+import Card from "./components/Card";
+import data from "./data";
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,12 +25,15 @@ const defaultState = {
   side1: "",
   side2: "",
   side3: "",
-  type: "",
+  type: undefined,
 };
+
+// image: { [key in keyof typeof data]: string };
+// info: { [key in keyof typeof data]: string };
+// link: { [key in keyof typeof data]: string };
 
 function App(): JSX.Element {
   const [state, setState] = useState<State>(defaultState);
-  const { side1, side2, side3 } = state;
 
   const handleOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -37,6 +42,8 @@ function App(): JSX.Element {
 
   const handleCheck = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { side1, side2, side3 } = state;
+
     const type = triangleType(+side1, +side2, +side3);
     setState({
       ...state,
@@ -44,62 +51,31 @@ function App(): JSX.Element {
       type,
     });
   };
-
+  console.log(state);
+  const { side1, side2, side3, type } = state;
   return (
     <Wrapper>
-      <Header>Triangle Tracker</Header>
-      <Form
-        handleCheck={handleCheck}
-        handleOnchange={handleOnchange}
-        side1={side1}
-        side2={side2}
-        side3={side3}
-        setState={() => setState(defaultState)}
-      />
-      {/* <Form onSubmit={handleCheck}>
-        <FormField>
-          <Label htmlFor="side1">Side 1:</Label>
-          <Input
-            type="number"
-            name="side1"
-            id="side1"
-            value={side1}
-            onChange={handleOnchange}
+      {type ? (
+        <Card
+          image={data[type as keyof typeof data].image}
+          info={data[type as keyof typeof data].info}
+          link={data[type as keyof typeof data].link}
+          type={type}
+          returnHome={() => setState(defaultState)}
+        />
+      ) : (
+        <>
+          <Header>Triangle Tracker</Header>
+          <Form
+            handleCheck={handleCheck}
+            handleOnchange={handleOnchange}
+            side1={side1}
+            side2={side2}
+            side3={side3}
+            setState={() => setState(defaultState)}
           />
-        </FormField>
-        <FormField>
-          <Label htmlFor="side2">Side 2:</Label>
-          <Input
-            type="number"
-            name="side2"
-            id="side2"
-            value={side2}
-            onChange={handleOnchange}
-          />
-        </FormField>
-        <FormField>
-          <Label htmlFor="side3">Side 3:</Label>
-          <Input
-            type="number"
-            name="side3"
-            id="side3"
-            value={side3}
-            onChange={handleOnchange}
-          />
-        </FormField>
-        <ButtonGroup>
-          <Button width={width} type="submit">
-            Check
-          </Button>
-          <Button
-            width={width}
-            type="button"
-            onClick={() => setState(defaultState)}
-          >
-            Rest
-          </Button>
-        </ButtonGroup>
-      </Form> */}
+        </>
+      )}
     </Wrapper>
   );
 }
