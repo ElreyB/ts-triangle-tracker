@@ -28,10 +28,6 @@ const defaultState = {
   type: undefined,
 };
 
-// image: { [key in keyof typeof data]: string };
-// info: { [key in keyof typeof data]: string };
-// link: { [key in keyof typeof data]: string };
-
 function App(): JSX.Element {
   const [state, setState] = useState<State>(defaultState);
 
@@ -51,11 +47,10 @@ function App(): JSX.Element {
       type,
     });
   };
-  console.log(state);
   const { side1, side2, side3, type } = state;
   return (
     <Wrapper>
-      {type ? (
+      {type && type !== "Not a Triangle" ? (
         <Card
           image={data[type as keyof typeof data].image}
           info={data[type as keyof typeof data].info}

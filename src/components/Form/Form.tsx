@@ -56,7 +56,6 @@ function Form({
   side3,
   setState,
 }: FormProps): JSX.Element {
-  const width = 25;
   return (
     <StyledForm onSubmit={handleCheck}>
       <FormField>
@@ -90,10 +89,10 @@ function Form({
         />
       </FormField>
       <ButtonGroup>
-        <Button width={width} type="submit">
+        <Button width={25} type="submit">
           Check
         </Button>
-        <Button width={width} type="button" onClick={setState}>
+        <Button width={25} type="button" onClick={setState}>
           Rest
         </Button>
       </ButtonGroup>

@@ -31,10 +31,11 @@ type CardProps = {
 };
 
 function Card({ image, info, link, type, returnHome }: CardProps): JSX.Element {
+  const title = type.slice(0, 1).toUpperCase() + type.slice(1);
   return (
     <Wrapper>
       <Img src={image} alt={`${type} triangle`} />
-      <h2>Equilateral</h2>
+      <h2>{title}</h2>
       <p>{info}</p>
       <p>
         <a href={link}>More..</a>
