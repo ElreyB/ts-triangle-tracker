@@ -3,12 +3,6 @@ import isosceles from "./assets/isosceles.png";
 import scalene from "./assets/scalene.png";
 import { Data } from "./types";
 
-// type DataObj = {
-//   equilateral: Data;
-//   isosceles: Data;
-//   scalene: Data;
-// };
-
 const data: { equilateral: Data; isosceles: Data; scalene: Data } = {
   equilateral: {
     image: `${equilateral}`,
