@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import styled from "styled-components";
-import { State, CardProps } from "../../types";
+import { restTriangle } from "../../actions";
+import { State, CardProps, Sides } from "../../types";
 import data from "../../data";
 
 const Wrapper = styled.div`
@@ -30,24 +32,32 @@ const mapStateToProps = (state: State): CardProps => {
     image: data[state.type as keyof typeof data].image,
     info: data[state.type as keyof typeof data].info,
     link: data[state.type as keyof typeof data].link,
-    type: state.type,
   };
 };
 
-// <Card
-//   image={data[type as keyof typeof data].image}
-//   info={data[type as keyof typeof data].info}
-//   link={data[type as keyof typeof data].link}
-//   type={type}
-//   returnHome={() => setState(defaultState)}
-// />
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    restTriangle: (sides: Sides) => dispatch(restTriangle(sides)),
+  };
+}
+
 function ConnectedCard({
   image,
   info,
   link,
   type,
-}: // returnHome,
-CardProps): JSX.Element {
+  restTriangle,
+}: CardProps & ReturnType<typeof mapDispatchToProps>): JSX.Element {
+  const handleRest = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("handle rest happen");
+    event.preventDefault();
+    restTriangle({
+      side1: "",
+      side2: "",
+      side3: "",
+    });
+  };
+
   const title = type && type.slice(0, 1).toUpperCase() + type.slice(1);
   return (
     <Wrapper>
@@ -57,11 +67,13 @@ CardProps): JSX.Element {
       <p>
         <a href={link}>More..</a>
       </p>
-      <Button width={25}>Return to form</Button>
+      <Button width={25} onClick={handleRest}>
+        Return to form
+      </Button>
     </Wrapper>
   );
 }
 
-const Card = connect(mapStateToProps)(ConnectedCard);
+const Card = connect(mapStateToProps, mapDispatchToProps)(ConnectedCard);
 
 export default Card;

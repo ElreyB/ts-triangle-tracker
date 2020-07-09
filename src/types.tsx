@@ -22,5 +22,4 @@ export type CardProps = {
   image: string;
   info: string;
   link: string;
-  // returnHome: () => void;
 } & TType;

@@ -20,6 +20,13 @@ function rootReducer(state = initialState, action: ActionType): State {
       type: triangleType(+side1, +side2, +side3),
     };
   }
+  if (action.type === "REST_TRIANGLE") {
+    console.log("reducer happen");
+    return {
+      ...state,
+      ...initialState,
+    };
+  }
   return state;
 }
 
