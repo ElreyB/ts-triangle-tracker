@@ -63,7 +63,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-function ConnectedForm({
+function Form({
   getTriangle,
 }: ReturnType<typeof mapDispatchToProps>): JSX.Element {
   const [state, setState] = useState<Sides>(defaultState);
@@ -122,5 +122,5 @@ function ConnectedForm({
     </StyledForm>
   );
 }
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
-export default Form;
+
+export default connect(null, mapDispatchToProps)(Form);

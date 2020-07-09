@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-function ConnectedCard({
+function Card({
   image,
   info,
   link,
@@ -73,6 +73,4 @@ function ConnectedCard({
   );
 }
 
-const Card = connect(mapStateToProps, mapDispatchToProps)(ConnectedCard);
-
-export default Card;
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
