@@ -75,7 +75,6 @@ function ConnectedForm({
 
   const handleCheck = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("handle checkhappen");
     getTriangle(state);
     setState(defaultState);
   };

@@ -49,7 +49,6 @@ function ConnectedCard({
   restTriangle,
 }: CardProps & ReturnType<typeof mapDispatchToProps>): JSX.Element {
   const handleRest = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("handle rest happen");
     event.preventDefault();
     restTriangle({
       side1: "",

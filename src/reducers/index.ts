@@ -11,7 +11,6 @@ const initialState: State = {
 function rootReducer(state = initialState, action: ActionType): State {
   if (action.type === "FIND_TRIANGLE") {
     const { side1, side2, side3 } = action.payload;
-    console.log("reducer happen");
     return {
       ...state,
       side1,
@@ -21,7 +20,6 @@ function rootReducer(state = initialState, action: ActionType): State {
     };
   }
   if (action.type === "REST_TRIANGLE") {
-    console.log("reducer happen");
     return {
       ...state,
       ...initialState,
