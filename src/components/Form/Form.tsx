@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { Dispatch } from "redux";
 import styled from "styled-components/macro";
-import { State } from "../../types";
+import { connect } from "react-redux";
+import { getTriangle } from "../../actions";
+import { State, Sides } from "../../types";
 
 export type FormProps = {
   handleCheck: React.FormEventHandler<HTMLFormElement>;
@@ -48,14 +51,35 @@ const ButtonGroup = styled.div`
   align-items: center;
 `;
 
-function Form({
-  handleCheck,
-  handleOnchange,
-  side1,
-  side2,
-  side3,
-  setState,
-}: FormProps): JSX.Element {
+const defaultState = {
+  side1: "",
+  side2: "",
+  side3: "",
+};
+
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    getTriangle: (sides: Sides) => dispatch(getTriangle(sides)),
+  };
+}
+
+function ConnectedForm({
+  getTriangle,
+}: ReturnType<typeof mapDispatchToProps>): JSX.Element {
+  const [state, setState] = useState<Sides>(defaultState);
+
+  const handleOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const handleCheck = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("handle checkhappen");
+    getTriangle(state);
+    setState(defaultState);
+  };
+  const { side1, side2, side3 } = state;
   return (
     <StyledForm onSubmit={handleCheck}>
       <FormField>
@@ -92,12 +116,12 @@ function Form({
         <Button width={25} type="submit">
           Check
         </Button>
-        <Button width={25} type="button" onClick={setState}>
+        <Button width={25} type="button" onClick={() => setState(defaultState)}>
           Rest
         </Button>
       </ButtonGroup>
     </StyledForm>
   );
 }
-
+const Form = connect(null, mapDispatchToProps)(ConnectedForm);
 export default Form;

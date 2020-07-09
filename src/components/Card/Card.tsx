@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { State, CardProps } from "../../types";
+import data from "../../data";
 
 const Wrapper = styled.div`
   border: 1px solid black;
@@ -22,16 +25,30 @@ const Button = styled.button<{ width: number }>`
   border: 1px solid black;
 `;
 
-type CardProps = {
-  image: string;
-  info: string;
-  link: string;
-  type: string;
-  returnHome: () => void;
+const mapStateToProps = (state: State): CardProps => {
+  return {
+    image: data[state.type as keyof typeof data].image,
+    info: data[state.type as keyof typeof data].info,
+    link: data[state.type as keyof typeof data].link,
+    type: state.type,
+  };
 };
 
-function Card({ image, info, link, type, returnHome }: CardProps): JSX.Element {
-  const title = type.slice(0, 1).toUpperCase() + type.slice(1);
+// <Card
+//   image={data[type as keyof typeof data].image}
+//   info={data[type as keyof typeof data].info}
+//   link={data[type as keyof typeof data].link}
+//   type={type}
+//   returnHome={() => setState(defaultState)}
+// />
+function ConnectedCard({
+  image,
+  info,
+  link,
+  type,
+}: // returnHome,
+CardProps): JSX.Element {
+  const title = type && type.slice(0, 1).toUpperCase() + type.slice(1);
   return (
     <Wrapper>
       <Img src={image} alt={`${type} triangle`} />
@@ -40,11 +57,11 @@ function Card({ image, info, link, type, returnHome }: CardProps): JSX.Element {
       <p>
         <a href={link}>More..</a>
       </p>
-      <Button width={25} onClick={returnHome}>
-        Return to form
-      </Button>
+      <Button width={25}>Return to form</Button>
     </Wrapper>
   );
 }
+
+const Card = connect(mapStateToProps)(ConnectedCard);
 
 export default Card;
