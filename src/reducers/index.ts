@@ -9,23 +9,29 @@ const initialState: State = {
 };
 
 function rootReducer(state = initialState, action: ActionType): State {
-  if (action.type === "FIND_TRIANGLE") {
-    const { side1, side2, side3 } = action.payload;
-    return {
-      ...state,
-      side1,
-      side2,
-      side3,
-      type: triangleType(+side1, +side2, +side3),
-    };
+  switch (action.type) {
+    case "FIND_TRIANGLE":
+      const { side1, side2, side3 } = action.payload;
+      return {
+        ...state,
+        side1,
+        side2,
+        side3,
+        type: triangleType(+side1, +side2, +side3),
+      };
+    case "REST_TRIANGLE":
+      return {
+        ...state,
+        ...initialState,
+      };
+    case "SET_TRIANGLE":
+      return {
+        ...state,
+        ...action.payload,
+      };
+    default:
+      return state;
   }
-  if (action.type === "REST_TRIANGLE") {
-    return {
-      ...state,
-      ...initialState,
-    };
-  }
-  return state;
 }
 
 export default rootReducer;
