@@ -22,4 +22,8 @@ module.exports = {
       version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
     },
   },
+  env: {
+    browser: true,
+    jest: true, // ADD THIS
+  },
 };
