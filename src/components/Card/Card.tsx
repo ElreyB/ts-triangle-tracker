@@ -27,20 +27,6 @@ const Button = styled.button<{ width: number }>`
   border: 1px solid black;
 `;
 
-const mapStateToProps = (state: State): CardProps => {
-  return {
-    image: data[state.type as keyof typeof data].image,
-    info: data[state.type as keyof typeof data].info,
-    link: data[state.type as keyof typeof data].link,
-  };
-};
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    restTriangle: (sides: Sides) => dispatch(restTriangle(sides)),
-  };
-}
-
 function Card({
   image,
   info,
@@ -71,6 +57,20 @@ function Card({
       </Button>
     </Wrapper>
   );
+}
+
+const mapStateToProps = (state: State): CardProps => {
+  return {
+    image: data[state.type as keyof typeof data].image,
+    info: data[state.type as keyof typeof data].info,
+    link: data[state.type as keyof typeof data].link,
+  };
+};
+
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    restTriangle: (sides: Sides) => dispatch(restTriangle(sides)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
