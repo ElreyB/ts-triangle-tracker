@@ -20,13 +20,7 @@ const Header = styled.h1`
   padding: 10px 0;
 `;
 
-const mapStateToProps = (state: State): TType => {
-  return {
-    type: state.type,
-  };
-};
-
-function ConnectedApp({ type }: TType): JSX.Element {
+function ConnectedApp(type: TType): JSX.Element {
   return (
     <Wrapper>
       {type && type !== "Not a Triangle" ? (
@@ -40,6 +34,10 @@ function ConnectedApp({ type }: TType): JSX.Element {
     </Wrapper>
   );
 }
+
+const mapStateToProps = (state: State): TType => {
+  return state.type;
+};
 const App = connect(mapStateToProps)(ConnectedApp);
 
 export default App;

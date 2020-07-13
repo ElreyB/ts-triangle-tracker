@@ -9,7 +9,7 @@ export type TType = "equilateral" | "isosceles" | "scalene" | "Not a Triangle";
 export type Sides = { side1: string; side2: string; side3: string };
 
 export type State = {
-  type?: TType;
+  type: TType;
 } & Sides;
 
 export type ActionType = { type: string; payload: Sides };

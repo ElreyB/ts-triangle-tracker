@@ -14,8 +14,9 @@ describe("<Card/>", () => {
       render(<Card />, {
         initialState: data[index],
       });
-      const obj: TType = data[index].type as TType;
-      const type: string = obj.slice(0, 1).toUpperCase() + obj.slice(1);
+      const triangleType: TType = data[index].type as TType;
+      const type: string =
+        triangleType.slice(0, 1).toUpperCase() + triangleType.slice(1);
       expect(screen.getByText(type)).toBeInTheDocument();
     });
   }

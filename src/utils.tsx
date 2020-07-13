@@ -5,7 +5,7 @@ export function triangleType(
   side2: number,
   side3: number
 ): TType {
-  let type: TType;
+  let type: TType = "Not a Triangle";
   if (side1 === side2 && side2 === side3) {
     type = "equilateral";
   } else if (
