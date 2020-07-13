@@ -4,12 +4,7 @@ export type Data = {
   link: string;
 };
 
-export type TType =
-  | "equilateral"
-  | "isosceles"
-  | "scalene"
-  | "Not a Triangle"
-  | undefined;
+export type TType = "equilateral" | "isosceles" | "scalene" | "Not a Triangle";
 
 export type Sides = { side1: string; side2: string; side3: string };
 

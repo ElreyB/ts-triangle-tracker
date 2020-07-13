@@ -2,7 +2,7 @@ import { State, ActionType } from "../types";
 import { triangleType } from "../utils";
 import { FIND_TRIANGLE, REST_TRIANGLE } from "../constants";
 
-const initialState: State = {
+export const initialState: State = {
   side1: "",
   side2: "",
   side3: "",
