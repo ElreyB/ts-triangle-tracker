@@ -3,7 +3,12 @@ import isosceles from "./assets/isosceles.png";
 import scalene from "./assets/scalene.png";
 import { Data } from "./types";
 
-const data: { equilateral: Data; isosceles: Data; scalene: Data } = {
+const data: {
+  equilateral: Data;
+  isosceles: Data;
+  scalene: Data;
+  "Not a Triangle": Data;
+} = {
   equilateral: {
     image: `${equilateral}`,
     info:
@@ -17,6 +22,11 @@ const data: { equilateral: Data; isosceles: Data; scalene: Data } = {
     link: "https://en.wikipedia.org/wiki/Isosceles_triangle",
   },
   scalene: {
+    image: `${scalene}`,
+    info: "A scalene triangle is a triangle that has three unequal sides.",
+    link: "https://en.wikipedia.org/wiki/Triangle",
+  },
+  "Not a Triangle": {
     image: `${scalene}`,
     info: "A scalene triangle is a triangle that has three unequal sides.",
     link: "https://en.wikipedia.org/wiki/Triangle",

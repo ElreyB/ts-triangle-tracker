@@ -20,10 +20,14 @@ const Header = styled.h1`
   padding: 10px 0;
 `;
 
-function ConnectedApp(type: TType): JSX.Element {
+type Props = {
+  type?: TType;
+};
+
+function ConnectedApp(type: Props): JSX.Element {
   return (
     <Wrapper>
-      {type && type !== "Not a Triangle" ? (
+      {type.type !== "Not a Triangle" ? (
         <Card />
       ) : (
         <>
@@ -35,8 +39,8 @@ function ConnectedApp(type: TType): JSX.Element {
   );
 }
 
-const mapStateToProps = (state: State): TType => {
-  return state.type;
+const mapStateToProps = (state: State): Props => {
+  return { type: state.type };
 };
 const App = connect(mapStateToProps)(ConnectedApp);
 

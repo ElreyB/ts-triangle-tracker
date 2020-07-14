@@ -6,7 +6,7 @@ export const initialState: State = {
   side1: "",
   side2: "",
   side3: "",
-  type: undefined,
+  type: "Not a Triangle",
 };
 
 function rootReducer(state = initialState, action: ActionType): State {
