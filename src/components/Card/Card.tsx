@@ -61,7 +61,6 @@ function Card({
 }
 
 const mapStateToProps = (state: State): CardProps => {
-  console.log({ state });
   return {
     image: data[state.type as keyof typeof data]?.image,
     info: data[state.type as keyof typeof data]?.info,
