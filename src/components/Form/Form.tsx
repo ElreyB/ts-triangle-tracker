@@ -3,13 +3,7 @@ import { Dispatch } from "redux";
 import styled from "styled-components/macro";
 import { connect } from "react-redux";
 import { getTriangle } from "../../actions";
-import { State, Sides } from "../../types";
-
-export type FormProps = {
-  handleCheck: React.FormEventHandler<HTMLFormElement>;
-  handleOnchange: React.FormEventHandler<HTMLInputElement>;
-  setState: () => void;
-} & State;
+import { Sides } from "../../types";
 
 const StyledForm = styled.form`
   display: flex;
@@ -58,12 +52,6 @@ const defaultState = {
   side2: "",
   side3: "",
 };
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    getTriangle: (sides: Sides) => dispatch(getTriangle(sides)),
-  };
-}
 
 function Form({
   getTriangle,
@@ -125,4 +113,9 @@ function Form({
   );
 }
 
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    getTriangle: (sides: Sides) => dispatch(getTriangle(sides)),
+  };
+}
 export default connect(null, mapDispatchToProps)(Form);

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "../../test-utils";
+import { render, screen } from "../../test-utils";
 import Card from "./Card";
 import { State, TType } from "../../types";
 import data from "../../data";

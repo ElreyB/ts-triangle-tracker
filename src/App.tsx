@@ -24,10 +24,10 @@ type Props = {
   type?: TType;
 };
 
-function ConnectedApp(type: Props): JSX.Element {
+function App({ type }: Props): JSX.Element {
   return (
     <Wrapper>
-      {type.type !== "Not a Triangle" ? (
+      {type && type !== "Not a Triangle" ? (
         <Card />
       ) : (
         <>
@@ -42,6 +42,4 @@ function ConnectedApp(type: Props): JSX.Element {
 const mapStateToProps = (state: State): Props => {
   return { type: state.type };
 };
-const App = connect(mapStateToProps)(ConnectedApp);
-
-export default App;
+export default connect(mapStateToProps)(App);
