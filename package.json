@@ -1,5 +1,5 @@
 {
-  "name": "triangle-tracker",
+  "name": "ts-triangle-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

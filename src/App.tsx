@@ -27,7 +27,7 @@ type Props = {
 function App({ type }: Props): JSX.Element {
   return (
     <Wrapper>
-      {type && type !== "Not a Triangle" ? (
+      {type ? (
         <Card />
       ) : (
         <>

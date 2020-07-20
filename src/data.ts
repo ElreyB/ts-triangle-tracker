@@ -1,6 +1,7 @@
 import equilateral from "./assets/equilateral.png";
 import isosceles from "./assets/isosceles.png";
 import scalene from "./assets/scalene.png";
+import notATriangle from "./assets/not-a-triangle.jpg";
 import { Data } from "./types";
 
 const data: {
@@ -24,11 +25,11 @@ const data: {
   scalene: {
     image: `${scalene}`,
     info: "A scalene triangle is a triangle that has three unequal sides.",
-    link: "https://en.wikipedia.org/wiki/Triangle",
+    link: "https://en.wikipedia.org/wiki/Scalene_triangle",
   },
   "Not a Triangle": {
-    image: `${scalene}`,
-    info: "A scalene triangle is a triangle that has three unequal sides.",
+    image: `${notATriangle}`,
+    info: "The numbers you enter do not make a triangle.",
     link: "https://en.wikipedia.org/wiki/Triangle",
   },
 };
