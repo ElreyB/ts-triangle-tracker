@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components/macro";
-import Form from "./components/Form";
+import Form from "../Form";
 import { connect } from "react-redux";
-import { TType, State } from "./types";
-import Card from "./components/Card";
+import { TType, State } from "../../types";
+import Card from "../Card";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ type Props = {
   type?: TType;
 };
 
-function App({ type }: Props): JSX.Element {
+function TriangleApp({ type }: Props): JSX.Element {
   return (
     <Wrapper>
       {type ? (
@@ -42,4 +42,4 @@ function App({ type }: Props): JSX.Element {
 const mapStateToProps = (state: State): Props => {
   return { type: state.type };
 };
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(TriangleApp);
