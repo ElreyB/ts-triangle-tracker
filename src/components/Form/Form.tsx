@@ -47,7 +47,7 @@ const ButtonGroup = styled.div`
   align-items: center;
 `;
 
-const defaultState = {
+const defaultsides = {
   side1: "",
   side2: "",
   side3: "",
@@ -56,19 +56,19 @@ const defaultState = {
 function Form({
   getTriangle,
 }: ReturnType<typeof mapDispatchToProps>): JSX.Element {
-  const [state, setState] = useState<Sides>(defaultState);
+  const [sides, setSides] = useState<Sides>(defaultsides);
 
   const handleOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setState({ ...state, [name]: value });
+    setSides({ ...sides, [name]: value });
   };
 
   const handleCheck = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    getTriangle(state);
-    setState(defaultState);
+    getTriangle(sides);
+    setSides(defaultsides);
   };
-  const { side1, side2, side3 } = state;
+  const { side1, side2, side3 } = sides;
   return (
     <StyledForm onSubmit={handleCheck}>
       <FormField>
@@ -105,7 +105,7 @@ function Form({
         <Button width={25} type="submit">
           Check
         </Button>
-        <Button width={25} type="button" onClick={() => setState(defaultState)}>
+        <Button width={25} type="button" onClick={() => setSides(defaultsides)}>
           Rest
         </Button>
       </ButtonGroup>

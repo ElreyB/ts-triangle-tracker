@@ -8,6 +8,7 @@ const triangleData: State[] = [
   { type: "equilateral", side1: "5", side2: "5", side3: "5" },
   { type: "scalene", side1: "5", side2: "6", side3: "7" },
   { type: "isosceles", side1: "5", side2: "5", side3: "6" },
+  { type: "Not a Triangle", side1: "5", side2: "5", side3: "10" },
 ];
 describe("<Card/>", () => {
   for (const index in triangleData) {
