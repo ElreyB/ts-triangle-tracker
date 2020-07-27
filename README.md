@@ -1,3 +1,5 @@
+This is me practicing react: typescript, redux, testing library by redoing an old bootcamp project [Triangle Tracker](https://github.com/ElreyB/triangle-tracker)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
